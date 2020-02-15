@@ -31,18 +31,16 @@ class ViewController: UIViewController {
                 
         let difference = abs(currentValue - targetValue)
         
-        let points = 100 - difference
-        var bonusPoints = 0
+        var points = 100 - difference
 
         let title: String
-        
         if difference == 0 {
             title = "Perfect!"
-            bonusPoints = 100
+            points += 100
         } else if difference < 5 {
             title = "You almost had it!"
             if difference == 1 {
-                bonusPoints = 50
+                points += 50
             }
         } else if difference < 10 {
             title = "Pretty good!"
@@ -50,9 +48,9 @@ class ViewController: UIViewController {
             title = "Not even close..."
         }
         
-        score += points + bonusPoints
+        score += points
         
-        let message = "Your score \(score) points"
+        let message = "You scored \(points) points"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         
@@ -63,7 +61,7 @@ class ViewController: UIViewController {
         startNewRound()
     }
     
-    @IBAction func sliderMoverd(_ slider:UISlider) {
+    @IBAction func sliderMoved(_ slider:UISlider) {
         let roundedValue = slider.value.rounded()
         currentValue = Int(roundedValue)
     }
